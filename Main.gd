@@ -4,7 +4,7 @@ var A_musical_phrases: Array
 var B_musical_phrases: Array
 var musical_phrase_durations: PoolRealArray
 
-export var start_level = 1
+export var level = 2
 # comment
 export var first_phrase_duration: PoolRealArray = [2.4, 3.5]
 export var other_phrase_durations: PoolRealArray = [2.4, 3.0]
@@ -15,7 +15,7 @@ var can_player_move_back: bool
 
 func _ready() -> void:
 	randomize()
-	start_level(start_level)
+	start_level(level)
 
 func load_musical_phrases(level_num: int, name: String) -> Array:
 	var musical_phrases = []
