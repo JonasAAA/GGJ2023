@@ -4,3 +4,8 @@
 
 [node name="LevelSelect" type="CanvasLayer"]
 script = ExtResource( 1 )
+
+[node name="ColorRect" type="ColorRect" parent="."]
+margin_right = 1920.0
+margin_bottom = 1080.0
+color = Color( 0.14902, 0.364706, 0.592157, 1 )
