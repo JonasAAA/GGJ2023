@@ -8,7 +8,7 @@
    version="1.1"
    id="svg5"
    inkscape:version="1.2.2 (732a01da63, 2022-12-09)"
-   sodipodi:docname="tiles_branch.svg"
+   sodipodi:docname="tiles_vine_thin_right_left.svg"
    xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
    xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
    xmlns="http://www.w3.org/2000/svg"
@@ -26,14 +26,15 @@
      showgrid="true"
      showguides="true"
      inkscape:zoom="7.796875"
-     inkscape:cx="31.743487"
-     inkscape:cy="32.256513"
+     inkscape:cx="33.154309"
+     inkscape:cy="34.56513"
      inkscape:window-width="958"
      inkscape:window-height="1008"
      inkscape:window-x="946"
      inkscape:window-y="0"
      inkscape:window-maximized="0"
-     inkscape:current-layer="layer1">
+     inkscape:current-layer="layer1"
+     inkscape:rotation="-90">
     <inkscape:grid
        type="xygrid"
        id="grid88"
