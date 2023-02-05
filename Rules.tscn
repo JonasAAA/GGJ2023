@@ -23,5 +23,6 @@ margin_top = -129.5
 margin_right = 345.0
 margin_bottom = 129.5
 custom_fonts/font = SubResource( 1 )
-text = "Press left, right, down arrow keys to play. Your goal is to choose a more appropriate continuation to the music from the two shown alternatives"
+text = "Press up, left, right, down arrow keys to play. Your goal is to choose a more appropriate continuation to the music from the two shown alternatives.
+YOU CANNOT take two steps back."
 autowrap = true
