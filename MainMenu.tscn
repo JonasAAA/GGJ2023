@@ -47,11 +47,9 @@ margin_bottom = 796.0
 color = Color( 0.0901961, 0.584314, 0.145098, 1 )
 
 [node name="StartButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -248.0
+margin_left = 712.0
 margin_top = 136.0
-margin_right = 252.0
+margin_right = 1212.0
 margin_bottom = 236.0
 rect_pivot_offset = Vector2( 250, 50 )
 theme = SubResource( 2 )
@@ -59,13 +57,12 @@ custom_fonts/font = SubResource( 1 )
 text = "Start"
 
 [node name="RulesButton" type="Button" parent="."]
-anchor_left = 0.5
-anchor_right = 0.5
-margin_left = -248.0
+margin_left = 712.0
 margin_top = 384.0
-margin_right = 252.0
+margin_right = 1212.0
 margin_bottom = 484.0
 rect_pivot_offset = Vector2( 250, 50 )
+theme = SubResource( 2 )
 custom_fonts/font = SubResource( 1 )
 text = "Rules"
 
@@ -75,6 +72,7 @@ margin_top = 640.0
 margin_right = 1212.0
 margin_bottom = 740.0
 rect_pivot_offset = Vector2( 250, 50 )
+theme = SubResource( 2 )
 custom_fonts/font = SubResource( 1 )
 text = "Credits"
 
