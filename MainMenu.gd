@@ -8,3 +8,6 @@ func _on_RulesButton_pressed():
 
 func _on_CreditsButton_pressed():
 	get_tree().change_scene("res://Credits.tscn")
+
+func _on_CustomButton_pressed():
+	get_tree().quit()

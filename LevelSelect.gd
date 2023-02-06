@@ -33,3 +33,6 @@ func _ready():
 func _on_LevelSelectButton_pressed(level_name: String) -> void:
 	GlobalState.cur_level = level_name
 	get_tree().change_scene("res://Level.tscn")
+
+func _on_BackToMenuButton_pressed():
+	get_tree().change_scene("res://MainMenu.tscn")

@@ -146,6 +146,8 @@ func level_complete() -> void:
 	audio_player.stream = load("res://music level up/Music_levelup.wav")
 	audio_player.play()
 	add_child(audio_player)
+#	for i in range(1, len(moveDataHistory)):
+#
 	$LevelCompleteScreen.show("Level complete!")
 
 func _process(delta: float) -> void:

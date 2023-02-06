@@ -1,6 +1,7 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=2]
 
 [ext_resource path="res://LevelSelect.gd" type="Script" id=1]
+[ext_resource path="res://CustomButton.tscn" type="PackedScene" id=2]
 
 [node name="LevelSelect" type="CanvasLayer"]
 script = ExtResource( 1 )
@@ -9,3 +10,16 @@ script = ExtResource( 1 )
 margin_right = 1920.0
 margin_bottom = 1080.0
 color = Color( 0.14902, 0.364706, 0.592157, 1 )
+
+[node name="BackToMenuButton" parent="." instance=ExtResource( 2 )]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -250.0
+margin_top = -224.0
+margin_right = 250.0
+margin_bottom = -124.0
+text = "Back to Menu"
+
+[connection signal="pressed" from="BackToMenuButton" to="." method="_on_BackToMenuButton_pressed"]
