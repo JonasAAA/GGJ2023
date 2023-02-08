@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/vine_movement_04.wav-451fc90666f6967074ca41b80bf45f11.sample"
+
+[deps]
+
+source_file="res://sounds/vine_movement_04.wav"
+dest_files=[ "res://.import/vine_movement_04.wav-451fc90666f6967074ca41b80bf45f11.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

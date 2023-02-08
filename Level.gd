@@ -89,6 +89,8 @@ func texture_name_from_dirs(from: int, to: int) -> String:
 	return "tiles_vine_" + dir_to_str[opposite_dir(from)] + "_" + dir_to_str[to] + ".svg"
 
 func texture_name_from_dir(dir: int) -> String:
+	if dir == DIRECTION.NONE:
+		return "tiles_seed.svg"
 	return "tiles_branch_" + dir_to_str[opposite_dir(dir)] + ".svg"
 
 func empty_texture_name() -> String:
