@@ -13,9 +13,15 @@ _global_script_classes=[ {
 "class": "CustomButton",
 "language": "GDScript",
 "path": "res://CustomButton.gd"
+}, {
+"base": "AudioStreamPlayer",
+"class": "MyAudioPlayer",
+"language": "GDScript",
+"path": "res://MyAudioPlayer.gd"
 } ]
 _global_script_class_icons={
-"CustomButton": ""
+"CustomButton": "",
+"MyAudioPlayer": ""
 }
 
 [application]

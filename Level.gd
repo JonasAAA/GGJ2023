@@ -11,15 +11,15 @@ class MoveData:
 		map_pos = pos
 		direction = dir
 
-const dir_to_str = {DIRECTION.UP: "top", DIRECTION.LEFT: "left", DIRECTION.DOWN: "bottom", DIRECTION.RIGHT: "right", DIRECTION.NONE: ""}
+const dir_to_str = {DIRECTION.UP: "top", DIRECTION.LEFT: "left", DIRECTION.DOWN: "bottom", DIRECTION.RIGHT: "right"}
 
 var A_musical_phrases: Array
 var B_musical_phrases: Array
 var musical_phrase_durations: PoolRealArray
 var is_complete: bool
 
-export var first_phrase_duration: Dictionary = {"01": 2.4, "02": 3.5}
-export var other_phrase_durations: Dictionary = {"01": 2.4, "02": 3.0}
+export var first_phrase_duration: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.5}
+export var other_phrase_durations: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.0}
 const max_num_musical_phrases = 100
 
 var moveDataHistory: Array
@@ -133,7 +133,7 @@ func set_player_abs_pos(new_abs_pos: Vector2, direction: int) -> void:
 				can_player_move_left = true
 		var journey_length = $TileMap.get_journey_length(new_map_pos)
 		if journey_length > 0:
-			var audio_player = AudioStreamPlayer.new()
+			var audio_player = MyAudioPlayer.new("Level Music")
 			if $TileMap.is_music_A(new_map_pos):
 				audio_player.stream = A_musical_phrases[journey_length - 1]
 			else:
@@ -144,7 +144,7 @@ func set_player_abs_pos(new_abs_pos: Vector2, direction: int) -> void:
 
 func level_complete() -> void:
 	is_complete = true
-	var audio_player = AudioStreamPlayer.new()
+	var audio_player = MyAudioPlayer.new("Sound Effects")
 	audio_player.stream = load("res://music level up/Music_levelup.wav")
 	audio_player.play()
 	add_child(audio_player)
