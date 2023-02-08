@@ -10,4 +10,5 @@ func _on_CreditsButton_pressed():
 	get_tree().change_scene("res://Credits.tscn")
 
 func _on_CustomButton_pressed():
+	GlobalState.save_game()
 	get_tree().quit()

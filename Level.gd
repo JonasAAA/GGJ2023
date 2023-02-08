@@ -11,22 +11,21 @@ class MoveData:
 		map_pos = pos
 		direction = dir
 
+export var first_phrase_duration: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.5}
+export var other_phrase_durations: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.0}
 const dir_to_str = {DIRECTION.UP: "top", DIRECTION.LEFT: "left", DIRECTION.DOWN: "bottom", DIRECTION.RIGHT: "right"}
+const max_num_musical_phrases = 100
 
+var level_name
 var A_musical_phrases: Array
 var B_musical_phrases: Array
 var musical_phrase_durations: PoolRealArray
 var is_complete: bool
-
-export var first_phrase_duration: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.5}
-export var other_phrase_durations: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.0}
-const max_num_musical_phrases = 100
-
 var moveDataHistory: Array
 var can_player_move_down: bool
 var can_player_move_left: bool
 
-func load_musical_phrases(level_name: String, music_name: String) -> Array:
+func load_musical_phrases(music_name: String) -> Array:
 	var musical_phrases = []
 	for i in max_num_musical_phrases:
 		var file_name = "res://music by level/" + level_name + "/" + music_name + "/" + str(i + 1).pad_zeros(2) + ".wav"
@@ -37,11 +36,12 @@ func load_musical_phrases(level_name: String, music_name: String) -> Array:
 	return musical_phrases
 
 func start_level(level_name: String) -> void:
+	self.level_name = level_name
 	GlobalStateScene.stop_menu_music()
 	is_complete = false
 	$LevelCompleteScreen.hide()
-	A_musical_phrases = load_musical_phrases(level_name, 'A')
-	B_musical_phrases = load_musical_phrases(level_name, 'B')
+	A_musical_phrases = load_musical_phrases('A')
+	B_musical_phrases = load_musical_phrases('B')
 	assert(len(A_musical_phrases) == len(B_musical_phrases))
 	musical_phrase_durations = [first_phrase_duration[level_name]]
 	for i in range(1, len(A_musical_phrases) + 1):
@@ -148,9 +148,16 @@ func level_complete() -> void:
 	audio_player.stream = load("res://music level up/Music_levelup.wav")
 	audio_player.play()
 	add_child(audio_player)
-#	for i in range(1, len(moveDataHistory)):
-#
-	$LevelCompleteScreen.show("Level complete!")
+	var score = 0
+	for i in range(2, len(moveDataHistory)):
+		if $TileMap.is_music_A(moveDataHistory[i].map_pos) == $TileMap.is_music_A(moveDataHistory[i - 1].map_pos):
+			score += 1
+	var max_score = len(A_musical_phrases) - 1
+	var prev_best_score: int = GlobalState.best_level_scores.get(level_name, LevelScore.new(0, max_score)).score
+	if prev_best_score <= score:
+		GlobalState.best_level_scores[level_name] = LevelScore.new(score, max_score)
+	var best_score: int = GlobalState.best_level_scores[level_name].score
+	$LevelCompleteScreen.show("Level complete!\nScore {score} / {max_score}\nBest Score {best_score} / {max_score}".format({"score": score, "max_score": max_score, "best_score": best_score}))
 
 func _process(delta: float) -> void:
 	if is_complete:
