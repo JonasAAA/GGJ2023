@@ -36,6 +36,7 @@ func load_musical_phrases(music_name: String) -> Array:
 	return musical_phrases
 
 func start_level(level_name: String) -> void:
+	$MusicParticles.hide()
 	self.level_name = level_name
 	GlobalStateScene.stop_menu_music()
 	is_complete = false
@@ -133,16 +134,10 @@ func set_player_abs_pos(new_abs_pos: Vector2, direction: int) -> void:
 				can_player_move_left = true
 		var journey_length = $TileMap.get_journey_length(new_map_pos)
 		if journey_length > 0:
-			var audio_player = MyAudioPlayer.new("Level Music")
-			if $TileMap.is_music_A(new_map_pos):
-				audio_player.stream = A_musical_phrases[journey_length - 1]
-			else:
-				audio_player.stream = B_musical_phrases[journey_length - 1]
-			audio_player.play()
-			add_child(audio_player)
-			$MusicalPhraseTimer.start(musical_phrase_durations[journey_length - 1])
+			play_phrase_from_map(new_map_pos)
 
 func level_complete() -> void:
+	$MusicParticles.hide()
 	is_complete = true
 	var audio_player = MyAudioPlayer.new("Sound Effects")
 	audio_player.stream = load("res://music level up/Music_levelup.wav")
@@ -170,6 +165,19 @@ func _process(delta: float) -> void:
 	if can_player_move_left && Input.is_action_just_pressed("move_left"):
 		queue_player_move(moveDataHistory[-2].map_pos, DIRECTION.LEFT)
 	$Camera2D.position = $Player.position
+
+func play_phrase_from_map(map_pos: Vector2) -> void:
+	$MusicParticles.position = $TileMap.map_to_abs_pos(map_pos)
+	$MusicParticles.show()
+	var journey_length = $TileMap.get_journey_length(map_pos)
+	var audio_player = MyAudioPlayer.new("Level Music")
+	if $TileMap.is_music_A(map_pos):
+		audio_player.stream = A_musical_phrases[journey_length - 1]
+	else:
+		audio_player.stream = B_musical_phrases[journey_length - 1]
+	audio_player.play()
+	add_child(audio_player)
+	$MusicalPhraseTimer.start(musical_phrase_durations[journey_length - 1])
 
 func _on_PlayerJumpTimer_timeout():
 	if is_complete:
