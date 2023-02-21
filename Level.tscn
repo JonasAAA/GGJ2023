@@ -49,9 +49,9 @@ show_collision = true
 [node name="Camera2D" type="Camera2D" parent="."]
 rotating = true
 current = true
-smoothing_enabled = true
 
 [node name="MusicalPhraseTimer" type="Timer" parent="."]
+one_shot = true
 
 [node name="LevelCompleteScreen" parent="." instance=ExtResource( 4 )]
 
@@ -63,3 +63,4 @@ texture = ExtResource( 5 )
 
 [connection signal="tree_entered" from="." to="." method="_on_Level_tree_entered"]
 [connection signal="timeout" from="PlayerJumpTimer" to="." method="_on_PlayerJumpTimer_timeout"]
+[connection signal="timeout" from="MusicalPhraseTimer" to="." method="_on_MusicalPhraseTimer_timeout"]

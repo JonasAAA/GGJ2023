@@ -53,22 +53,23 @@ func start_level(level_name: String) -> void:
 	$Player.initialize()
 	queue_player_move($TileMap.get_player_start_pos(), DIRECTION.NONE)
 
-func queue_player_move(new_pos: Vector2, direction: int) -> void:
-	var new_abs_pos = $TileMap.map_to_abs_pos(new_pos)
+func queue_player_move(new_map_pos: Vector2, direction: int) -> void:
+	var new_abs_pos = $TileMap.map_to_abs_pos(new_map_pos)
 	if $Player.has_queued_pos:
 		$Player.queue_next_pos(new_abs_pos, direction)
 		return
 	if len(moveDataHistory) == 0:
-		moveDataHistory.append(MoveData.new(new_pos, direction))
+		moveDataHistory.append(MoveData.new(new_map_pos, direction))
 		$Player.position = new_abs_pos
 		can_player_move_down = false
 		can_player_move_left = false
 		return
-	if new_pos == moveDataHistory[-1].map_pos:
+	if new_map_pos == moveDataHistory[-1].map_pos:
 		return
 	$Player.queue_next_pos(new_abs_pos, direction)
-	$PlayerJumpTimer.wait_time = $MusicalPhraseTimer.time_left
-	$PlayerJumpTimer.start()
+	if $MusicalPhraseTimer.time_left == 0:
+		_on_PlayerJumpTimer_timeout()
+	$PlayerJumpTimer.start($MusicalPhraseTimer.time_left)
 
 func opposite_dir(dir: int) -> int:
 	if dir == DIRECTION.DOWN:
@@ -107,13 +108,13 @@ func set_player_abs_pos(new_abs_pos: Vector2, direction: int) -> void:
 	var old_map_pos = $TileMap.abs_pos_to_map($Player.position)
 	$Player.position = new_abs_pos
 	var new_map_pos = $TileMap.abs_pos_to_map($Player.position)
-	
+
 	if not $TileMap.is_inside(new_map_pos):
 		$TileMap.set_tile_texture(old_map_pos, texture_name_from_dirs(moveDataHistory[-1].direction, DIRECTION.UP))
 		$TileMap.set_tile_texture($TileMap.map_pos_to_up(old_map_pos), final_texture_name())
 		level_complete()
 		return
-	
+
 	if old_map_pos != new_map_pos:
 		if $TileMap.get_journey_length(new_map_pos) < $TileMap.get_journey_length(old_map_pos):
 			moveDataHistory.remove(len(moveDataHistory) - 1)
@@ -135,6 +136,7 @@ func set_player_abs_pos(new_abs_pos: Vector2, direction: int) -> void:
 		var journey_length = $TileMap.get_journey_length(new_map_pos)
 		if journey_length > 0:
 			play_phrase_from_map(new_map_pos)
+#		$Player.queue_next_pos(new_map_pos, DIRECTION.NONE)
 
 func level_complete() -> void:
 	$MusicParticles.hide()
@@ -167,23 +169,27 @@ func _process(delta: float) -> void:
 	$Camera2D.position = $Player.position
 
 func play_phrase_from_map(map_pos: Vector2) -> void:
-	$MusicParticles.position = $TileMap.map_to_abs_pos(map_pos)
-	$MusicParticles.show()
 	var journey_length = $TileMap.get_journey_length(map_pos)
-	var audio_player = MyAudioPlayer.new("Level Music")
-	if $TileMap.is_music_A(map_pos):
-		audio_player.stream = A_musical_phrases[journey_length - 1]
-	else:
-		audio_player.stream = B_musical_phrases[journey_length - 1]
-	audio_player.play()
-	add_child(audio_player)
-	$MusicalPhraseTimer.start(musical_phrase_durations[journey_length - 1])
+	if journey_length > 0:
+		$MusicParticles.position = $TileMap.map_to_abs_pos(map_pos)
+		$MusicParticles.show()
+		var audio_player = MyAudioPlayer.new("Level Music")
+		if $TileMap.is_music_A(map_pos):
+			audio_player.stream = A_musical_phrases[journey_length - 1]
+		else:
+			audio_player.stream = B_musical_phrases[journey_length - 1]
+		audio_player.play()
+		add_child(audio_player)
+		$MusicalPhraseTimer.start(musical_phrase_durations[journey_length - 1])
 
-func _on_PlayerJumpTimer_timeout():
+func _on_PlayerJumpTimer_timeout() -> void:
 	if is_complete:
 		return
 	set_player_abs_pos($Player.next_position, $Player.next_direction)
 	$Player.clear_queued_pos()
 
-func _on_Level_tree_entered():
+func _on_Level_tree_entered() -> void:
 	start_level(GlobalState.cur_level)
+#
+func _on_MusicalPhraseTimer_timeout() -> void:
+	$MusicParticles.hide()
