@@ -1,10 +1,12 @@
-[gd_scene load_steps=9 format=2]
+[gd_scene load_steps=10 format=2]
 
 [ext_resource path="res://Level.gd" type="Script" id=1]
 [ext_resource path="res://TileMap.tscn" type="PackedScene" id=2]
 [ext_resource path="res://Player.tscn" type="PackedScene" id=3]
 [ext_resource path="res://LevelCompleteScreen.tscn" type="PackedScene" id=4]
 [ext_resource path="res://Textures/note.png" type="Texture" id=5]
+
+[sub_resource type="TileSet" id=4]
 
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0.0090909 ), 0.0, 2.44514, 0, 0, Vector2( 1, 0 ), -4.28283, 0.0, 0, 0 ]
@@ -42,6 +44,10 @@ cell_size = Vector2( 64, 64 )
 cell_custom_transform = Transform2D( 64, 0, 0, 64, 0, 0 )
 show_collision = true
 
+[node name="EffectsMap" type="TileMap" parent="."]
+tile_set = SubResource( 4 )
+format = 1
+
 [node name="Player" parent="." instance=ExtResource( 3 )]
 
 [node name="PlayerJumpTimer" type="Timer" parent="."]
@@ -49,6 +55,8 @@ show_collision = true
 [node name="Camera2D" type="Camera2D" parent="."]
 rotating = true
 current = true
+smoothing_enabled = true
+smoothing_speed = 3.0
 
 [node name="MusicalPhraseTimer" type="Timer" parent="."]
 one_shot = true
