@@ -10,4 +10,5 @@ func hide() -> void:
 	$BackToMenuButton.hide()
 
 func _on_BackToMenuButton_pressed():
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://LevelSelect.tscn")

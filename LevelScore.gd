@@ -5,9 +5,9 @@ class_name LevelScore
 var score: int
 var max_score: int
 
-func _init(score: int, max_score: int) -> void:
-	self.score = score
-	self.max_score = max_score
+func _init(score_: int, max_score_: int) -> void:
+	self.score = score_
+	self.max_score = max_score_
 
 func _to_string() -> String:
 	return "{score} / {max_score}".format(to_dict())

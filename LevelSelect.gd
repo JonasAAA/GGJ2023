@@ -8,6 +8,7 @@ func all_folders_in_dir(path: String) -> PoolStringArray:
 	assert(dir_open_result == OK)
 	
 	var folders: PoolStringArray = []
+# warning-ignore:return_value_discarded
 	dir.list_dir_begin()
 	
 	while true:
@@ -29,4 +30,5 @@ func _ready():
 		get_node("ScrollContainer/LevelSelectButtonContainer").add_child(level_button_and_info)
 
 func _on_BackToMenuButton_pressed() -> void:
+# warning-ignore:return_value_discarded
 	get_tree().change_scene("res://MainMenu.tscn")

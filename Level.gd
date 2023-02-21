@@ -37,9 +37,9 @@ func load_musical_phrases(music_name: String) -> Array:
 		musical_phrases.append(musical_phrase)
 	return musical_phrases
 
-func start_level(level_name: String) -> void:
+func start_level(new_level_name: String) -> void:
 	$MusicParticles.hide()
-	self.level_name = level_name
+	level_name = new_level_name
 	GlobalStateScene.stop_menu_music()
 	is_complete = false
 	$LevelCompleteScreen.hide()
@@ -47,7 +47,7 @@ func start_level(level_name: String) -> void:
 	B_musical_phrases = load_musical_phrases('B')
 	assert(len(A_musical_phrases) == len(B_musical_phrases))
 	musical_phrase_durations = [first_phrase_duration[level_name]]
-	for i in range(1, len(A_musical_phrases) + 1):
+	for _i in len(A_musical_phrases) - 1:
 		musical_phrase_durations.append(other_phrase_durations[level_name])
 	
 	$TileMap.initialize(len(A_musical_phrases), empty_texture_name(), seed_texture_name())
@@ -137,6 +137,7 @@ func set_player_abs_pos(new_abs_pos: Vector2, direction: int) -> void:
 				can_player_move_left = true
 		var journey_length = $TileMap.get_journey_length(new_map_pos)
 		if journey_length > 0:
+# warning-ignore:return_value_discarded
 			play_phrase_from_map(new_map_pos)
 
 func level_complete() -> void:
@@ -160,7 +161,7 @@ func level_complete() -> void:
 	audio_player.play()
 	$LevelCompleteScreen.show("Level complete!\nScore {cur_score}\nBest Score {best_score}".format({"cur_score": cur_score, "best_score": best_score}))
 
-func _process(delta: float) -> void:
+func _process(_delta: float) -> void:
 	if is_complete:
 		return
 	if Input.is_action_just_pressed("move_up"):

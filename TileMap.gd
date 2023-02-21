@@ -101,11 +101,5 @@ func map_pos_to_down(map_pos: Vector2) -> Vector2:
 func map_pos_to_right(map_pos: Vector2) -> Vector2:
 	return map_pos + Vector2(1, 0)
 
-func abs_int(value: int) -> int:
-	if value > 0:
-		return value
-	else:
-		return -value
-
 func get_journey_length(player_map_pos: Vector2) -> int:
-	return abs_int(player_map_pos.x - player_start_pos.x) + abs_int(player_map_pos.y - player_start_pos.y)
+	return (abs(player_map_pos.x - player_start_pos.x) + abs(player_map_pos.y - player_start_pos.y)) as int
