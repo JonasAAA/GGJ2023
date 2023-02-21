@@ -148,16 +148,15 @@ func level_complete() -> void:
 	audio_player.stream = load("res://music level up/Music_levelup.wav")
 	audio_player.play()
 	add_child(audio_player)
-	var score = 0
+	var cur_score: LevelScore = LevelScore.new(0, len(A_musical_phrases) - 1)
 	for i in range(2, len(moveDataHistory)):
 		if $TileMap.is_music_A(moveDataHistory[i].map_pos) == $TileMap.is_music_A(moveDataHistory[i - 1].map_pos):
-			score += 1
-	var max_score = len(A_musical_phrases) - 1
-	var prev_best_score: int = GlobalState.best_level_scores.get(level_name, LevelScore.new(0, max_score)).score
-	if prev_best_score <= score:
-		GlobalState.best_level_scores[level_name] = LevelScore.new(score, max_score)
-	var best_score: int = GlobalState.best_level_scores[level_name].score
-	$LevelCompleteScreen.show("Level complete!\nScore {score} / {max_score}\nBest Score {best_score} / {max_score}".format({"score": score, "max_score": max_score, "best_score": best_score}))
+			cur_score.score += 1
+	var prev_best_score: LevelScore = GlobalState.best_level_scores.get(level_name, cur_score)
+	if prev_best_score.score <= cur_score.score:
+		GlobalState.best_level_scores[level_name] = cur_score
+	var best_score: LevelScore = GlobalState.best_level_scores[level_name]
+	$LevelCompleteScreen.show("Level complete!\nScore {cur_score}\nBest Score {best_score}".format({"cur_score": cur_score, "best_score": best_score}))
 
 func _process(delta: float) -> void:
 	if is_complete:
