@@ -23,11 +23,17 @@ _global_script_classes=[ {
 "class": "MyAudioPlayer",
 "language": "GDScript",
 "path": "res://MyAudioPlayer.gd"
+}, {
+"base": "Sprite",
+"class": "RootSprite",
+"language": "GDScript",
+"path": "res://RootSprite.gd"
 } ]
 _global_script_class_icons={
 "CustomButton": "",
 "LevelScore": "",
-"MyAudioPlayer": ""
+"MyAudioPlayer": "",
+"RootSprite": ""
 }
 
 [application]
@@ -38,8 +44,7 @@ config/icon="res://icon.png"
 
 [autoload]
 
-GlobalState="*res://GlobalState.gd"
-GlobalStateScene="*res://GlobalState.tscn"
+GlobalState="*res://GlobalState.tscn"
 
 [display]
 

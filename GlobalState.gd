@@ -3,14 +3,17 @@ extends Node
 const save_file_name = "user://save.json"
 
 var cur_level: String = "01"
+export var use_new_visuals: bool = true
 # Dictionary of {level_name(str): level_score(LevelScore)}
 var best_level_scores: Dictionary
 
 func _ready() -> void:
 	randomize()
+	print(use_new_visuals)
 	load_game()
 	
 func load_game() -> void:
+	print("bosdomf")
 	var file = File.new()
 	if not file.file_exists(save_file_name):
 		return

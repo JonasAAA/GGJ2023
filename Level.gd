@@ -40,7 +40,7 @@ func load_musical_phrases(music_name: String) -> Array:
 func start_level(new_level_name: String) -> void:
 	$MusicParticles.hide()
 	level_name = new_level_name
-	GlobalStateScene.stop_menu_music()
+	GlobalState.stop_menu_music()
 	is_complete = false
 	$LevelCompleteScreen.hide()
 	A_musical_phrases = load_musical_phrases('A')

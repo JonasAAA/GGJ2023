@@ -11,7 +11,7 @@
 [sub_resource type="Curve" id=2]
 _data = [ Vector2( 0, 0.0090909 ), 0.0, 2.44514, 0, 0, Vector2( 1, 0 ), -4.28283, 0.0, 0, 0 ]
 
-[sub_resource type="CurveTexture" id=3]
+[sub_resource type="CurveTexture" id=5]
 curve = SubResource( 2 )
 
 [sub_resource type="ParticlesMaterial" id=1]
@@ -24,7 +24,7 @@ orbit_velocity = 0.0
 orbit_velocity_random = 0.0
 scale = 0.25
 scale_random = 0.1
-scale_curve = SubResource( 3 )
+scale_curve = SubResource( 5 )
 color = Color( 1, 1, 1, 0.384314 )
 hue_variation = 0.2
 hue_variation_random = 1.0
@@ -64,6 +64,7 @@ one_shot = true
 [node name="LevelCompleteScreen" parent="." instance=ExtResource( 4 )]
 
 [node name="MusicParticles" type="Particles2D" parent="."]
+visible = false
 amount = 3
 visibility_rect = Rect2( -64, -64, 128, 128 )
 process_material = SubResource( 1 )
