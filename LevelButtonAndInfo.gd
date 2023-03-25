@@ -12,5 +12,4 @@ func _on_CustomButton_pressed() -> void:
 		scene_name = "res://NewPresentation/Level.tscn"
 	else:
 		scene_name = "res://Level.tscn"
-	print("bla ", GlobalState.use_new_visuals)
 	get_tree().change_scene(scene_name)

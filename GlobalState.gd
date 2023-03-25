@@ -9,11 +9,9 @@ var best_level_scores: Dictionary
 
 func _ready() -> void:
 	randomize()
-	print(use_new_visuals)
 	load_game()
 	
 func load_game() -> void:
-	print("bosdomf")
 	var file = File.new()
 	if not file.file_exists(save_file_name):
 		return
