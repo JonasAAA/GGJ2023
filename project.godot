@@ -28,12 +28,18 @@ _global_script_classes=[ {
 "class": "RootSprite",
 "language": "GDScript",
 "path": "res://RootSprite.gd"
+}, {
+"base": "Sprite",
+"class": "Stone",
+"language": "GDScript",
+"path": "res://NewPresentation/Stone.gd"
 } ]
 _global_script_class_icons={
 "CustomButton": "",
 "LevelScore": "",
 "MyAudioPlayer": "",
-"RootSprite": ""
+"RootSprite": "",
+"Stone": ""
 }
 
 [application]

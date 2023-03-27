@@ -5,6 +5,7 @@ enum DIRECTION {LEFT, RIGHT, DOWN, NONE}
 var RootToLeftSprite = preload("res://NewPresentation/RootToLeftSprite.tscn")
 var RootToRightSprite = preload("res://NewPresentation/RootToRightSprite.tscn")
 var RootStartSprite = preload("res://NewPresentation/RootStartSprite.tscn")
+var Stone = preload("res://NewPresentation/Stone.tscn")
 onready var MusicalPhraseTimer: Timer = $MusicalPhraseTimer
 onready var Camera: Camera2D = $Camera
 onready var LevelCompleteScreen = $LevelCompleteScreen
@@ -57,13 +58,14 @@ class History:
 
 export var first_phrase_duration: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.5}
 export var other_phrase_durations: Dictionary = {"Test": 2.4, "01": 2.4, "02": 3.0}
-export var root_sprite_height: float = 100
 export var level_complete_sound_length: float = 2.5
+export var vine_height: float = 100
+export var stone_to_vine_width_ratio = .5
 const max_num_musical_phrases = 100
-
 
 var level_complete_sound: AudioStream = preload("res://music level up/Music_levelup.wav")
 var root_sprite_scale: Vector2
+var vine_width: float
 var level_name: String
 var A_musical_phrases: Array
 var B_musical_phrases: Array
@@ -91,9 +93,11 @@ func load_musical_phrases(music_name: String) -> Array:
 
 
 func start_level(new_level_name: String) -> void:
-	var root_scale =  root_sprite_height / RootToLeftSprite.instance().texture.get_height()
+	
+	var root_scale = vine_height / RootSprite.get_vine_height()
 	root_sprite_scale = Vector2(root_scale, root_scale)
-	$MusicParticles.hide()
+	vine_width = RootSprite.get_vine_width() * root_scale
+	MusicParticles.hide()
 	level_name = new_level_name
 	GlobalState.stop_menu_music()
 	is_complete = false
@@ -101,7 +105,7 @@ func start_level(new_level_name: String) -> void:
 	A_musical_phrases = load_musical_phrases('A')
 	B_musical_phrases = load_musical_phrases('B')
 	assert(len(A_musical_phrases) == len(B_musical_phrases))
-	musical_phrase_durations = [first_phrase_duration[level_name]]
+	musical_phrase_durations = [0, first_phrase_duration[level_name]]
 	is_left_music_A = [randi() % 2]
 	for _i in len(A_musical_phrases) - 1:
 		musical_phrase_durations.append(other_phrase_durations[level_name])
@@ -113,11 +117,23 @@ func start_level(new_level_name: String) -> void:
 	Camera.position = history.get_last_pos()
 	can_player_move_back = false
 	queued_move_dir = DIRECTION.NONE
+	place_stones()
+	print("level child count ", get_child_count())
 
 
 func get_start_pos() -> Vector2:
-	return Vector2(0, root_sprite_height * (len(A_musical_phrases) - .5))
+	return Vector2(0, vine_height * (len(A_musical_phrases) - .5))
 
+func place_stones() -> void:
+	for i in range(-30, 30):
+		for j in range(0, 20):
+			if (i + j) % 2 != 0:
+				continue
+			var stone: Stone = Stone.instance()
+			var position = Vector2(i * vine_width, j * vine_height)
+			var width = stone_to_vine_width_ratio * vine_width
+			stone.initialize(position, width)
+			add_child(stone)
 
 func move_to_next_pos(direction: int) -> void:
 	if direction == DIRECTION.DOWN:
