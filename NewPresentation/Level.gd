@@ -118,7 +118,6 @@ func start_level(new_level_name: String) -> void:
 	can_player_move_back = false
 	queued_move_dir = DIRECTION.NONE
 	place_stones()
-	print("level child count ", get_child_count())
 
 
 func get_start_pos() -> Vector2:

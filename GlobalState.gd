@@ -17,7 +17,6 @@ func load_game() -> void:
 		return
 	file.open(save_file_name, File.READ)
 	var best_level_score_as_json: Dictionary = parse_json(file.get_line())
-#	print("load file ", best_level_score_as_json)
 	for level_name in best_level_score_as_json:
 		var level_score_dict: Dictionary = best_level_score_as_json[level_name]
 		best_level_scores[level_name] = LevelScore.new(level_score_dict["score"], level_score_dict["max_score"])
@@ -29,7 +28,6 @@ func save_game() -> void:
 	for level_name in best_level_scores:
 		var level_score: LevelScore = best_level_scores[level_name]
 		best_level_score_as_json[level_name] = level_score.to_dict()
-#	print("save file ", best_level_score_as_json)
 	file.store_line(to_json(best_level_score_as_json))
 	file.close()
 	
