@@ -27,7 +27,7 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "RootSprite",
 "language": "GDScript",
-"path": "res://RootSprite.gd"
+"path": "res://NewPresentation/RootSpriteScenes/RootSprite.gd"
 }, {
 "base": "Sprite",
 "class": "Stone",
