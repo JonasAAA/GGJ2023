@@ -1,9 +1,0 @@
-[gd_scene load_steps=2 format=2]
-
-[ext_resource path="res://RootSprite.gd" type="Script" id=1]
-
-[node name="RootSprite" type="Sprite"]
-modulate = Color( 0.403922, 0.12549, 0.12549, 1 )
-self_modulate = Color( 0.796078, 0.180392, 0.180392, 1 )
-scale = Vector2( 0.25, 0.25 )
-script = ExtResource( 1 )

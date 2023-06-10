@@ -2,9 +2,9 @@ extends Node
 
 enum DIRECTION {LEFT, RIGHT, DOWN, NONE}
 
-var RootToLeftSprite = preload("res://NewPresentation/RootToLeftSprite.tscn")
-var RootToRightSprite = preload("res://NewPresentation/RootToRightSprite.tscn")
-var RootStartSprite = preload("res://NewPresentation/RootStartSprite.tscn")
+var RootToLeftSprite = preload("res://NewPresentation/RootSpriteScenes/ToLeft.tscn")
+var RootToRightSprite = preload("res://NewPresentation/RootSpriteScenes/ToRight.tscn")
+var RootStartSprite = preload("res://NewPresentation/RootSpriteScenes/Start.tscn")
 var Stone = preload("res://NewPresentation/Stone.tscn")
 onready var MusicalPhraseTimer: Timer = $MusicalPhraseTimer
 onready var Camera: Camera2D = $Camera
@@ -17,14 +17,22 @@ class History:
 	var is_music_A_history: PoolByteArray
 	
 	func _init(start_direction: int, start_sprite: RootSprite, start_is_music_A: bool) -> void:
-		direction_history = [start_direction]
-		sprite_history = [start_sprite]
-		is_music_A_history = [start_is_music_A]
+		direction_history = []
+		sprite_history = []
+		is_music_A_history = []
+		append(start_direction, start_sprite, start_is_music_A)
 	
 	func append(direction: int, sprite: RootSprite, is_music_A: bool) -> void:
 		direction_history.append(direction)
 		sprite_history.append(sprite)
 		is_music_A_history.append(is_music_A)
+		
+		var finalizeInd: int = max(len(sprite_history) - 2, 0)
+		get_sprite(finalizeInd).finalize()
+	
+	func finalize_all_sprites() -> void:
+		for sprite in sprite_history:
+			sprite.finalize()
 	
 	func pop_back() -> void:
 		direction_history.remove(len(direction_history) - 1)
@@ -75,6 +83,7 @@ var history: History
 var is_left_music_A: PoolByteArray
 var can_player_move_back: bool
 var queued_move_dir: int
+var queued_sprite: RootSprite
 
 
 func _ready() -> void:
@@ -93,7 +102,6 @@ func load_musical_phrases(music_name: String) -> Array:
 
 
 func start_level(new_level_name: String) -> void:
-	
 	var root_scale = vine_height / RootSprite.get_vine_height()
 	root_sprite_scale = Vector2(root_scale, root_scale)
 	vine_width = RootSprite.get_vine_width() * root_scale
@@ -111,17 +119,19 @@ func start_level(new_level_name: String) -> void:
 		musical_phrase_durations.append(other_phrase_durations[level_name])
 		is_left_music_A.append(randi() % 2)
 	var start_sprite: RootSprite = RootStartSprite.instance()
-	start_sprite.initialize(get_start_pos(), root_sprite_scale)
+	start_sprite.initialize(RootSprite.SIZE.FULL, 0, get_start_pos(), root_sprite_scale)
 	history = History.new(DIRECTION.NONE, start_sprite, is_left_music_A[0])
 	add_child(start_sprite)
 	Camera.position = history.get_last_pos()
 	can_player_move_back = false
 	queued_move_dir = DIRECTION.NONE
+	queued_sprite = null
 	place_stones()
 
 
 func get_start_pos() -> Vector2:
 	return Vector2(0, vine_height * (len(A_musical_phrases) - .5))
+
 
 func place_stones() -> void:
 	for i in range(-30, 30):
@@ -133,6 +143,25 @@ func place_stones() -> void:
 			var width = stone_to_vine_width_ratio * vine_width
 			stone.initialize(position, width)
 			add_child(stone)
+
+
+func queue_move(direction: int) -> void:
+	assert(direction == DIRECTION.LEFT || direction == DIRECTION.RIGHT || direction == DIRECTION.DOWN)
+	queued_move_dir = direction
+	remove_child(queued_sprite)
+	history.get_last_sprite().set_size(RootSprite.SIZE.FULL)
+	var new_sprite: RootSprite = null
+	if direction == DIRECTION.LEFT:
+		new_sprite = RootToLeftSprite.instance()
+	if direction == DIRECTION.RIGHT:
+		new_sprite = RootToRightSprite.instance()
+	if direction == DIRECTION.DOWN:
+		history.get_last_sprite().set_size(RootSprite.SIZE.MEDIUM)
+	if new_sprite != null:
+		new_sprite.initialize(RootSprite.SIZE.SMALL, history.length(), history.get_last_pos(), root_sprite_scale)
+		queued_sprite = new_sprite
+		add_child(queued_sprite)
+
 
 func move_to_next_pos(direction: int) -> void:
 	if direction == DIRECTION.DOWN:
@@ -147,9 +176,11 @@ func move_to_next_pos(direction: int) -> void:
 			new_sprite = RootToLeftSprite.instance()
 		else:
 			new_sprite = RootToRightSprite.instance()
-		new_sprite.initialize(history.get_last_pos(), root_sprite_scale)
+		new_sprite.initialize(RootSprite.SIZE.FULL, history.length(), history.get_last_pos(), root_sprite_scale)
 		add_child(new_sprite)
 		if history.length() >= len(is_left_music_A):
+			history.finalize_all_sprites()
+			new_sprite.finalize()
 			level_complete()
 			return
 		var is_music_A: bool
@@ -164,6 +195,7 @@ func move_to_next_pos(direction: int) -> void:
 
 
 func level_complete() -> void:
+	remove_child(queued_sprite)
 	is_complete = true
 	var audio_player = MyAudioPlayer.new("Sound Effects")
 	audio_player.stream = level_complete_sound
@@ -190,11 +222,11 @@ func _process(_delta: float) -> void:
 	if is_complete:
 		return
 	if Input.is_action_just_pressed("move_left"):
-		queued_move_dir = DIRECTION.LEFT
+		queue_move(DIRECTION.LEFT)
 	if Input.is_action_just_pressed("move_right"):
-		queued_move_dir = DIRECTION.RIGHT
+		queue_move(DIRECTION.RIGHT)
 	if can_player_move_back && Input.is_action_just_pressed("move_down"):
-		queued_move_dir = DIRECTION.DOWN
+		queue_move(DIRECTION.DOWN)
 	
 	if MusicalPhraseTimer.time_left == 0 && queued_move_dir != DIRECTION.NONE:
 		move_to_next_pos(queued_move_dir)
@@ -218,6 +250,7 @@ func play_phrase_from_history(index: int) -> float:
 	var duration = musical_phrase_durations[index]
 	MusicalPhraseTimer.start(duration)
 	return duration
+
 
 func _on_MusicalPhraseTimer_timeout() -> void:
 	MusicParticles.hide()

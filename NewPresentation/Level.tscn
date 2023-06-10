@@ -39,7 +39,7 @@ smoothing_enabled = true
 
 [node name="MusicParticles" type="Particles2D" parent="."]
 visible = false
-z_index = 1
+z_index = 4096
 amount = 3
 visibility_rect = Rect2( -128, -128, 256, 256 )
 process_material = SubResource( 5 )
@@ -57,5 +57,4 @@ margin_top = -2000.0
 margin_right = 2000.0
 color = Color( 0.141176, 0.776471, 0.760784, 1 )
 
-[connection signal="tree_entered" from="." to="." method="_on_Level_tree_entered"]
 [connection signal="timeout" from="MusicalPhraseTimer" to="." method="_on_MusicalPhraseTimer_timeout"]
