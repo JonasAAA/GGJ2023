@@ -27,3 +27,5 @@ Do these **before** pulling the repository version with Wwise integration.
 ### Profiling
 
 To see the game communicating with Wwise, follow [Wwise 101 | Profiling game](https://www.audiokinetic.com/en/courses/wwise101/?source=wwise101&id=profiling_game#read). In the `Remote Connections` window, this game will have empty `Application Name`.
+
+Currently when press `space` when playing a level, should get the `level complete` sound effect which is acually a Wwise event, so should be seen when profiling.
