@@ -151,10 +151,16 @@ func place_stones() -> void:
 			add_child(stone)
 
 
+func remove_queued_sprite() -> void:
+	if queued_sprite != null:
+		remove_child(queued_sprite)
+		queued_sprite = null
+
+
 func queue_move(direction: int) -> void:
 	assert(direction == DIRECTION.LEFT || direction == DIRECTION.RIGHT || direction == DIRECTION.DOWN)
+	remove_queued_sprite()
 	queued_move_dir = direction
-	remove_child(queued_sprite)
 	history.get_last_sprite().set_size(RootSprite.SIZE.FULL)
 	var new_sprite: RootSprite = null
 	if direction == DIRECTION.LEFT:
@@ -163,13 +169,14 @@ func queue_move(direction: int) -> void:
 		new_sprite = RootToRightSprite.instance()
 	if direction == DIRECTION.DOWN:
 		history.get_last_sprite().set_size(RootSprite.SIZE.MEDIUM)
+	queued_sprite = new_sprite
 	if new_sprite != null:
 		new_sprite.initialize(RootSprite.SIZE.SMALL, history.length(), history.get_last_pos(), root_sprite_scale)
-		queued_sprite = new_sprite
 		add_child(queued_sprite)
 
 
 func move_to_next_pos(direction: int) -> void:
+	remove_queued_sprite()
 	if direction == DIRECTION.DOWN:
 		remove_child(history.get_last_sprite())
 		history.pop_back()
@@ -201,7 +208,7 @@ func move_to_next_pos(direction: int) -> void:
 
 
 func level_complete() -> void:
-	remove_child(queued_sprite)
+	remove_queued_sprite()
 	is_complete = true
 	var audio_player = MyAudioPlayer.new("Sound Effects")
 	audio_player.stream = level_complete_sound
