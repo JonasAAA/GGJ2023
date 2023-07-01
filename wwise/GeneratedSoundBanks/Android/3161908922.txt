@@ -1,0 +1,6 @@
+Event	ID	Name			Wwise Object Path	Notes
+	384784438	Level_up_event			\Default Work Unit\Level_up_event	
+
+In Memory Audio	ID	Name	Audio source file		Wwise Object Path	Notes	Data Size
+	802745509	Level_up	C:\Users\Jonas\Desktop\Musical Root\GGJ2023\wwise\project\.cache\Android\SFX\Music_levelup_10C4C929.wem		\Actor-Mixer Hierarchy\Default Work Unit\Level_up		1036860
+

@@ -1,0 +1,84 @@
+class_name AK
+
+class EVENTS:
+
+	const LEVEL_UP_EVENT = 384784438 
+
+	const _dict = { 
+	 "LEVEL UP EVENT": LEVEL_UP_EVENT
+	} 
+
+class STATES:
+
+	const _dict = {} 
+
+class SWITCHES:
+
+	const _dict = {} 
+
+class GAME_PARAMETERS:
+
+	const SS_AIR_PRESENCE = 3847924954 
+	const SS_AIR_MONTH = 2648548617 
+	const SS_AIR_SIZE = 3074696722 
+	const SS_AIR_FEAR = 1351367891 
+	const SS_AIR_FURY = 1029930033 
+	const SS_AIR_TIMEOFDAY = 3203397129 
+	const SS_AIR_TURBULENCE = 4160247818 
+	const SS_AIR_STORM = 3715662592 
+	const SS_AIR_FREEFALL = 3002758120 
+	const SS_AIR_RPM = 822163944 
+
+	const _dict = { 
+	 "SS AIR PRESENCE": SS_AIR_PRESENCE,
+	 "SS AIR MONTH": SS_AIR_MONTH,
+	 "SS AIR SIZE": SS_AIR_SIZE,
+	 "SS AIR FEAR": SS_AIR_FEAR,
+	 "SS AIR FURY": SS_AIR_FURY,
+	 "SS AIR TIMEOFDAY": SS_AIR_TIMEOFDAY,
+	 "SS AIR TURBULENCE": SS_AIR_TURBULENCE,
+	 "SS AIR STORM": SS_AIR_STORM,
+	 "SS AIR FREEFALL": SS_AIR_FREEFALL,
+	 "SS AIR RPM": SS_AIR_RPM
+	} 
+
+class TRIGGERS:
+
+	const _dict = {} 
+
+class BANKS:
+
+	const INIT = 1355168291 
+	const MAIN = 3161908922 
+
+	const _dict = { 
+	 "INIT": INIT,
+	 "MAIN": MAIN
+	} 
+
+class BUSSES:
+
+	const MASTER_AUDIO_BUS = 3803692087 
+
+	const _dict = { 
+	 "MASTER AUDIO BUS": MASTER_AUDIO_BUS
+	} 
+
+class AUX_BUSSES:
+
+	const _dict = {} 
+
+class AUDIO_DEVICES:
+
+	const SYSTEM = 3859886410 
+	const NO_OUTPUT = 2317455096 
+
+	const _dict = { 
+	 "SYSTEM": SYSTEM,
+	 "NO OUTPUT": NO_OUTPUT
+	} 
+
+class EXTERNAL_SOURCES:
+
+	const _dict = {} 
+

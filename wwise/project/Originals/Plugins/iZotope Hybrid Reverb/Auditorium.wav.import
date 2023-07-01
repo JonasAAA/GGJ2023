@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Auditorium.wav-71d8660a8ef3bf265ef09317449cd197.sample"
+
+[deps]
+
+source_file="res://wwise/project/Originals/Plugins/iZotope Hybrid Reverb/Auditorium.wav"
+dest_files=[ "res://.import/Auditorium.wav-71d8660a8ef3bf265ef09317449cd197.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

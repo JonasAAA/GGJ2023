@@ -87,6 +87,12 @@ var queued_sprite: RootSprite
 
 
 func _ready() -> void:
+	var result = Wwise.load_bank_id(AK.BANKS.MAIN)
+	print("is main loading successful? ", result)
+	result = Wwise.register_listener(self)
+	print("is registering listener successful? ", result)
+	result = Wwise.register_game_obj(self, "Level")
+	print("is wwise game object registering successful? ", result)
 	start_level(GlobalState.cur_level)
 
 
@@ -219,6 +225,9 @@ func level_complete() -> void:
 
 
 func _process(_delta: float) -> void:
+	if Input.is_action_just_pressed("ui_select"):
+		var playing_id = Wwise.post_event_id(AK.EVENTS.LEVEL_UP_EVENT, self)
+		print("Triggering Wwise event LEVEL_UP_EVENT")
 	if is_complete:
 		return
 	if Input.is_action_just_pressed("move_left"):
