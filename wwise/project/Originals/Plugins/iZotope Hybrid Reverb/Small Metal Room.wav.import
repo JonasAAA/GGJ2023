@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Small Metal Room.wav-52b78a2c869c4cdf5cafdba55028ee8d.sample"
+
+[deps]
+
+source_file="res://wwise/project/Originals/Plugins/iZotope Hybrid Reverb/Small Metal Room.wav"
+dest_files=[ "res://.import/Small Metal Room.wav-52b78a2c869c4cdf5cafdba55028ee8d.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

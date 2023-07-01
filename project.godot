@@ -9,6 +9,16 @@
 config_version=4
 
 _global_script_classes=[ {
+"base": "Reference",
+"class": "AK",
+"language": "GDScript",
+"path": "res://wwise/GeneratedSoundBanks/wwise_ids.gd"
+}, {
+"base": "Reference",
+"class": "AkUtils",
+"language": "GDScript",
+"path": "res://addons/wwise/runtime/helpers/ak_utils.gd"
+}, {
 "base": "Button",
 "class": "CustomButton",
 "language": "GDScript",
@@ -35,6 +45,8 @@ _global_script_classes=[ {
 "path": "res://NewPresentation/Stone.gd"
 } ]
 _global_script_class_icons={
+"AK": "",
+"AkUtils": "",
 "CustomButton": "",
 "LevelScore": "",
 "MyAudioPlayer": "",
@@ -51,12 +63,19 @@ config/icon="res://icon.png"
 [autoload]
 
 GlobalState="*res://GlobalState.tscn"
+WwiseSettings="*res://addons/wwise/editor/wwise_settings.gd"
+Wwise="*res://addons/wwise/bin/wwise-gdnative.gdns"
+Waapi="*res://addons/wwise/bin/waapi-gdnative.gdns"
 
 [display]
 
 window/size/width=1920
 window/size/height=1080
 window/size/borderless=true
+
+[editor_plugins]
+
+enabled=PoolStringArray( "res://addons/wwise/plugin.cfg" )
 
 [input]
 
@@ -93,3 +112,8 @@ common/enable_pause_aware_picking=true
 [rendering]
 
 environment/default_environment="res://default_env.tres"
+
+[wwise]
+
+common_user_settings/load_init_bank_at_startup=true
+common_user_settings/engine_logging=true

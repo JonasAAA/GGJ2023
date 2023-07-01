@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<WwiseDocument Type="WorkUnit" ID="{9203CB7D-81C1-46CD-A574-8E8733E6447C}" SchemaVersion="103">
+	<Events>
+		<WorkUnit Name="Default Work Unit" ID="{9203CB7D-81C1-46CD-A574-8E8733E6447C}" PersistMode="Standalone">
+			<ChildrenList>
+				<Event Name="Level_up_event" ID="{A854E498-19E3-45C5-924D-9B5D166E92EE}">
+					<ChildrenList>
+						<Action Name="" ID="{B6385602-403B-45A9-8374-3C99D0DBB9C9}" ShortID="1068023130">
+							<ReferenceList>
+								<Reference Name="Target">
+									<ObjectRef Name="Level_up" ID="{A3468955-E8D8-444C-A943-775CD77041F1}" WorkUnitID="{0D86DA9C-E695-4236-84E4-145035E269BB}"/>
+								</Reference>
+							</ReferenceList>
+						</Action>
+					</ChildrenList>
+				</Event>
+			</ChildrenList>
+		</WorkUnit>
+	</Events>
+</WwiseDocument>

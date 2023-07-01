@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Forest.wav-d1fab130a462f6286ca6b7f9b85bfab5.sample"
+
+[deps]
+
+source_file="res://wwise/project/Originals/Plugins/iZotope Hybrid Reverb/Forest.wav"
+dest_files=[ "res://.import/Forest.wav-d1fab130a462f6286ca6b7f9b85bfab5.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

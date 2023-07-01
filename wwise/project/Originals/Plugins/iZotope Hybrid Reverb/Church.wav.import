@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Church.wav-7fbb2045dd647356936674dce78670ea.sample"
+
+[deps]
+
+source_file="res://wwise/project/Originals/Plugins/iZotope Hybrid Reverb/Church.wav"
+dest_files=[ "res://.import/Church.wav-7fbb2045dd647356936674dce78670ea.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

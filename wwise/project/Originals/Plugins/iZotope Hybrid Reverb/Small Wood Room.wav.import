@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/Small Wood Room.wav-c2461527692f3333e05d0cfe5cdeee26.sample"
+
+[deps]
+
+source_file="res://wwise/project/Originals/Plugins/iZotope Hybrid Reverb/Small Wood Room.wav"
+dest_files=[ "res://.import/Small Wood Room.wav-c2461527692f3333e05d0cfe5cdeee26.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

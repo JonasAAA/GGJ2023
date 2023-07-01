@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<SoundBanksInfo Platform="iOS" BasePlatform="iOS" SchemaVersion="12" SoundbankVersion="140">
+	<RootPaths>
+		<ProjectRoot>C:\Users\Jonas\Desktop\Musical Root\GGJ2023\wwise\project\</ProjectRoot>
+		<SourceFilesRoot>C:\Users\Jonas\Desktop\Musical Root\GGJ2023\wwise\project\.cache\iOS\</SourceFilesRoot>
+		<SoundBanksRoot>C:\Users\Jonas\Desktop\Musical Root\GGJ2023\wwise\GeneratedSoundBanks\iOS\</SoundBanksRoot>
+		<ExternalSourcesInputFile></ExternalSourcesInputFile>
+		<ExternalSourcesOutputRoot>C:\Users\Jonas\Desktop\Musical Root\GGJ2023\wwise\project\GeneratedSoundBanks\iOS</ExternalSourcesOutputRoot>
+	</RootPaths>
+	<DialogueEvents/>
+	<StreamedFiles/>
+	<MediaFilesNotInAnyBank/>
+	<SoundBanks>
+		<SoundBank Id="1355168291" Language="SFX" Hash="3518540322">
+			<ObjectPath>Init</ObjectPath>
+			<ShortName>Init</ShortName>
+			<Path>1355168291.bnk</Path>
+		</SoundBank>
+		<SoundBank Id="3161908922" Language="SFX" Hash="3426249075">
+			<ObjectPath>\SoundBanks\Default Work Unit\Main</ObjectPath>
+			<ShortName>Main</ShortName>
+			<Path>3161908922.bnk</Path>
+			<IncludedEvents>
+				<Event Id="384784438" Name="Level_up_event" ObjectPath="\Events\Default Work Unit\Level_up_event">
+					<IncludedMemoryFiles>
+						<File Id="802745509" Language="SFX">
+							<ShortName>Music_levelup.wav</ShortName>
+							<Path>SFX\Music_levelup_10C4C929.wem</Path>
+						</File>
+					</IncludedMemoryFiles>
+				</Event>
+			</IncludedEvents>
+		</SoundBank>
+	</SoundBanks>
+</SoundBanksInfo>

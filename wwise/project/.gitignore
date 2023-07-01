@@ -1,0 +1,11 @@
+# Based on https://www.audiokinetic.com/qa/1547/there-definitive-files-should-could-omitted-source-control
+
+*.cache
+
+*.akd
+
+*.prof
+
+*.validationcache
+
+*.wem
