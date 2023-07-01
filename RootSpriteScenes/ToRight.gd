@@ -2,7 +2,7 @@ extends RootSprite
 
 var small_texture: Texture = preload("res://Textures/small-root-to-right.png")
 var medium_texture: Texture = preload("res://Textures/medium-root-to-right.png")
-var full_texture: Texture = preload("res://Textures/root-to-right-new.png")
+var full_texture: Texture = preload("res://Textures/full-root-to-right.png")
 
 func _get_small_texture() -> Texture:
 	return small_texture

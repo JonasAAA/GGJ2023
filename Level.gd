@@ -2,10 +2,10 @@ extends Node
 
 enum DIRECTION {LEFT, RIGHT, DOWN, NONE}
 
-var RootToLeftSprite = preload("res://NewPresentation/RootSpriteScenes/ToLeft.tscn")
-var RootToRightSprite = preload("res://NewPresentation/RootSpriteScenes/ToRight.tscn")
-var RootStartSprite = preload("res://NewPresentation/RootSpriteScenes/Start.tscn")
-var Stone = preload("res://NewPresentation/Stone.tscn")
+var RootToLeftSprite = preload("res://RootSpriteScenes/ToLeft.tscn")
+var RootToRightSprite = preload("res://RootSpriteScenes/ToRight.tscn")
+var RootStartSprite = preload("res://RootSpriteScenes/Start.tscn")
+var Stone = preload("res://Stone.tscn")
 onready var MusicalPhraseTimer: Timer = $MusicalPhraseTimer
 onready var Camera: Camera2D = $Camera
 onready var LevelCompleteScreen = $LevelCompleteScreen

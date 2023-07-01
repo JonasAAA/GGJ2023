@@ -37,12 +37,12 @@ _global_script_classes=[ {
 "base": "Sprite",
 "class": "RootSprite",
 "language": "GDScript",
-"path": "res://NewPresentation/RootSpriteScenes/RootSprite.gd"
+"path": "res://RootSpriteScenes/RootSprite.gd"
 }, {
 "base": "Sprite",
 "class": "Stone",
 "language": "GDScript",
-"path": "res://NewPresentation/Stone.gd"
+"path": "res://Stone.gd"
 } ]
 _global_script_class_icons={
 "AK": "",

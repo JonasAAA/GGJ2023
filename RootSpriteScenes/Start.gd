@@ -1,6 +1,6 @@
 extends RootSprite
 
-var small_texture: Texture = preload("res://Textures/root-start-2.png")
+var small_texture: Texture = preload("res://Textures/root-start.png")
 var medium_texture: Texture = small_texture
 var full_texture: Texture = small_texture
 

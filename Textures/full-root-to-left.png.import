@@ -2,15 +2,15 @@
 
 importer="texture"
 type="StreamTexture"
-path="res://.import/root-start-2.png-dab4413a602181c2b152c71ed56a25f6.stex"
+path="res://.import/full-root-to-left.png-c38203b897790c5aac62b5c8380cf200.stex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://Textures/root-start-2.png"
-dest_files=[ "res://.import/root-start-2.png-dab4413a602181c2b152c71ed56a25f6.stex" ]
+source_file="res://Textures/full-root-to-left.png"
+dest_files=[ "res://.import/full-root-to-left.png-c38203b897790c5aac62b5c8380cf200.stex" ]
 
 [params]
 
